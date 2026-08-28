@@ -78,6 +78,7 @@ function remove(id) {
   }
 
   const [deleted] = posts.splice(index, 1);
+  writeAll(STORE, posts);
   return deleted;
 }
 
