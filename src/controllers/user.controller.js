@@ -1,4 +1,5 @@
 const userService = require("../services/user.service");
+const postService = require("../services/post.service");
 
 function getAll(req, res) {
   res.json(userService.getAll());
@@ -55,6 +56,8 @@ function remove(req, res) {
     return res.status(404).json({ message: "User not found" });
   }
 
+  postService.removeByUserId(user.id);
+  console.log("User deleted", user);
   res.json({ message: "User deleted", user });
 }
 
