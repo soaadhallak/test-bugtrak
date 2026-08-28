@@ -57,7 +57,11 @@ function remove(req, res) {
   }
 
   postService.removeByUserId(user.id);
-  console.log("User deleted", user);
+  console.log(
+    "Posts deleted for user",
+    user.id,
+    postService.removeByUserId(user.id),
+  );
   res.json({ message: "User deleted", user });
 }
 
