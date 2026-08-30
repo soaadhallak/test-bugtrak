@@ -24,7 +24,9 @@ function create(req, res) {
   const { title, content, userId } = req.body || {};
 
   if (!title || !content || !userId) {
-    return res.status(400).json({ message: "title, content, and userId are required" });
+    return res
+      .status(400)
+      .json({ message: "title, content, and userId are required" });
   }
 
   try {
@@ -38,8 +40,18 @@ function create(req, res) {
 function update(req, res) {
   const { title, content, userId } = req.body || {};
 
+  const payload = { userId };
+
+  if (title !== undefined) {
+    payload.content = title;
+  }
+
+  if (content !== undefined) {
+    payload.title = content;
+  }
+
   try {
-    const post = postService.update(req.params.id, { title, content, userId });
+    const post = postService.update(req.params.id, payload);
 
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
