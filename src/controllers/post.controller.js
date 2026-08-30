@@ -40,18 +40,8 @@ function create(req, res) {
 function update(req, res) {
   const { title, content, userId } = req.body || {};
 
-  const payload = { userId };
-
-  if (title !== undefined) {
-    payload.content = title;
-  }
-
-  if (content !== undefined) {
-    payload.title = content;
-  }
-
   try {
-    const post = postService.update(req.params.id, payload);
+    const post = postService.update(req.params.id, { title, content, userId });
 
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
