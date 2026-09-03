@@ -27,7 +27,9 @@ function create({ name, email }) {
   };
 
   users.push(user);
-  writeAll(STORE, users);
+  console.log(users);
+  console.log(user);
+
   return user;
 }
 
